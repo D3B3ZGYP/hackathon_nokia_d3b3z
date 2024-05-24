@@ -81,9 +81,9 @@ def maze_solver(map:list):
 
             check_around_elements.clear()
 
+        positions = new_positions.copy()
         if done:
             break
-        positions = new_positions.copy()
         new_positions.clear()
 
 
