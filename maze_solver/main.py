@@ -23,6 +23,7 @@ def maze_solver(map:list):
     positions = []
     new_positions = []
     answ = ["S"]
+    new_answ = []
     check_around_nums = [-1,1]
     check_around_pos_num = [[0,-1],[-1,0],[0,1],[1,0]]
     check_around_directions = ["U","L","D","R"]
@@ -40,26 +41,25 @@ def maze_solver(map:list):
                 check_around_elements.append(map[e[1]+k][e[0]])
                 check_around_elements.append(map[e[1]][e[0]+k])
 
+            new_answ.append(answ[i])
+
+            if not new_answ[i][-1] == "S":
+                previous_move = new_answ[-1][-1]
+                index_of_direction_of_previous_move = check_around_directions.index(previous_move)
+                if index_of_direction_of_previous_move > 1:
+                    opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move - 2]
+                else:
+                    opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move + 2]
+                check_around_elements[check_around_directions.index(opposite_of_previous_move)] = "O"
+
             if check_around_elements.count("G") == 1:
-                answ[i] += check_around_directions[check_around_elements.index(".")] + "G"
-                print(answ)
+                new_answ[-1] += check_around_directions[check_around_elements.index("G")] + "G"
+                print("megoldás: " + new_answ[-1])
                 done = True
 
             if check_around_elements.count(".") == 1:
-                if not answ[i][-1] == "S":
-                    previous_move = answ[i][-1]
-                    index_of_direction_of_previous_move = check_around_directions.index(previous_move)
-                    if index_of_direction_of_previous_move > 1:
-                        opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move-2]
-                    else:
-                        opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move+2]
-                    if opposite_of_previous_move == check_around_directions[check_around_elements.index(".")]:  # zsákutca?
-                        answ.pop(i)
-                        positions.pop(i)
-                        break
-
-                answ[i] += check_around_directions[check_around_elements.index(".")]
-                l = check_around_pos_num[check_around_directions.index(answ[i][-1])]
+                new_answ[-1] += check_around_directions[check_around_elements.index(".")]
+                l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                 new_positions.append([e[0] + l[0], e[1] + l[1]])
 
             elif check_around_elements.count(".") > 1:
@@ -67,28 +67,31 @@ def maze_solver(map:list):
                 for i_,e_ in enumerate(check_around_elements):
                     if e_ == ".":
                         if new_pos_not_needed:
-                            answ[i] += check_around_directions[i_]
-                            l = check_around_pos_num[check_around_directions.index(answ[i][-1])]
+                            new_answ[-1] += check_around_directions[i_]
+                            l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                             new_positions.append([e[0] + l[0], e[1] + l[1]])
                             new_pos_not_needed = False
                         else:
                             new_positions.append(e)
-                            new_pos = new_positions[-1]
-                            index_new_pos = new_positions.index(new_pos)
-                            answ.append(answ[i][:-1] + check_around_directions[i_])
-                            l = check_around_pos_num[check_around_directions.index(answ[index_new_pos][-1])]
-                            new_positions[index_new_pos] = [e[0] + l[0], e[1] + l[1]]
+                            new_answ.append(new_answ[-1][:-1] + check_around_directions[i_])
+                            l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
+                            new_positions[-1] = [e[0] + l[0], e[1] + l[1]]
 
             check_around_elements.clear()
 
-        positions = new_positions.copy()
         if done:
             break
+        answ = new_answ.copy()
+        positions = new_positions.copy()
         new_positions.clear()
+        new_answ.clear()
 
 
-
+print("A")
 maze_solver(labs1)
+print("B")
+maze_solver(labs2)
+print("C")
 
 end = time.time()
 print(end - start)
