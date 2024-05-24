@@ -54,7 +54,7 @@ def maze_solver(map:list):
 
             if check_around_elements.count("G") == 1:
                 new_answ[-1] += check_around_directions[check_around_elements.index("G")] + "G"
-                print("megoldás: " + new_answ[-1])
+                print(new_answ[-1])
                 done = True
 
             if check_around_elements.count(".") == 1:
