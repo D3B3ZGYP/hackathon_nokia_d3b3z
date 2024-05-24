@@ -43,6 +43,11 @@ def maze_solver(map:list):
 
             new_answ.append(answ[i])
 
+            if check_around_elements.count("G") == 1:
+                new_answ[-1] += check_around_directions[check_around_elements.index("G")] + "G"
+                print(new_answ[-1])
+                done = True
+
             if not new_answ[i][-1] == "S":
                 previous_move = new_answ[-1][-1]
                 index_of_direction_of_previous_move = check_around_directions.index(previous_move)
@@ -51,11 +56,6 @@ def maze_solver(map:list):
                 else:
                     opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move + 2]
                 check_around_elements[check_around_directions.index(opposite_of_previous_move)] = "O"
-
-            if check_around_elements.count("G") == 1:
-                new_answ[-1] += check_around_directions[check_around_elements.index("G")] + "G"
-                print(new_answ[-1])
-                done = True
 
             if check_around_elements.count(".") == 1:
                 new_answ[-1] += check_around_directions[check_around_elements.index(".")]
@@ -92,5 +92,7 @@ maze_solver(labs1)
 print("B")
 maze_solver(labs2)
 print("C")
+maze_solver(labs3)
 
 end = time.time()
+print(end - start)
