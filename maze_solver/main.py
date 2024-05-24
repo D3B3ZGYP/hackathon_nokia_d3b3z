@@ -94,4 +94,3 @@ maze_solver(labs2)
 print("C")
 
 end = time.time()
-print(end - start)
