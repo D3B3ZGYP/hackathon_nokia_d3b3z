@@ -44,11 +44,11 @@ def maze_solver(map:list):
             new_answ.append(answ[i])
 
             if check_around_elements.count("G") == 1:
-                new_answ[-1] += check_around_directions[check_around_elements.index("G")] + "G"
+                new_answ[-1] += " " + check_around_directions[check_around_elements.index("G")] + " " + "G"
                 return new_answ[-1]
 
             if check_around_elements.count(".") == 1:
-                new_answ[-1] += check_around_directions[check_around_elements.index(".")]
+                new_answ[-1] += " " + check_around_directions[check_around_elements.index(".")]
                 l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                 new_positions.append([e[0] + l[0], e[1] + l[1]])
                 map_row = map[new_positions[-1][1]]
@@ -59,13 +59,13 @@ def maze_solver(map:list):
                 for i_,e_ in enumerate(check_around_elements):
                     if e_ == ".":
                         if new_pos_not_needed:
-                            new_answ[-1] += check_around_directions[i_]
+                            new_answ[-1] += " " + check_around_directions[i_]
                             l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                             new_positions.append([e[0] + l[0], e[1] + l[1]])
                             new_pos_not_needed = False
                         else:
                             new_positions.append(e)
-                            new_answ.append(new_answ[-1][:-1] + check_around_directions[i_])
+                            new_answ.append(new_answ[-1][:-2] + " " + check_around_directions[i_])
                             l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                             new_positions[-1] = [e[0] + l[0], e[1] + l[1]]
                         map_row = map[new_positions[-1][1]]
