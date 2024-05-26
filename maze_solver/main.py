@@ -45,22 +45,14 @@ def maze_solver(map:list):
 
             if check_around_elements.count("G") == 1:
                 new_answ[-1] += check_around_directions[check_around_elements.index("G")] + "G"
-                print(new_answ[-1])
-                done = True
-
-            if not new_answ[i][-1] == "S":
-                previous_move = new_answ[-1][-1]
-                index_of_direction_of_previous_move = check_around_directions.index(previous_move)
-                if index_of_direction_of_previous_move > 1:
-                    opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move - 2]
-                else:
-                    opposite_of_previous_move = check_around_directions[index_of_direction_of_previous_move + 2]
-                check_around_elements[check_around_directions.index(opposite_of_previous_move)] = "O"
+                return new_answ[-1]
 
             if check_around_elements.count(".") == 1:
                 new_answ[-1] += check_around_directions[check_around_elements.index(".")]
                 l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                 new_positions.append([e[0] + l[0], e[1] + l[1]])
+                map_row = map[new_positions[-1][1]]
+                map[new_positions[-1][1]] = map_row[:new_positions[-1][0]] + "F" + map_row[new_positions[-1][0]+1:]
 
             elif check_around_elements.count(".") > 1:
                 new_pos_not_needed = True
@@ -76,6 +68,11 @@ def maze_solver(map:list):
                             new_answ.append(new_answ[-1][:-1] + check_around_directions[i_])
                             l = check_around_pos_num[check_around_directions.index(new_answ[-1][-1])]
                             new_positions[-1] = [e[0] + l[0], e[1] + l[1]]
+                        map_row = map[new_positions[-1][1]]
+                        map[new_positions[-1][1]] = map_row[:new_positions[-1][0]] + "F" + map_row[new_positions[-1][0] + 1:]
+
+            else:
+                new_answ.pop(-1)
 
             check_around_elements.clear()
 
@@ -87,12 +84,4 @@ def maze_solver(map:list):
         new_answ.clear()
 
 
-print("A")
-maze_solver(labs1)
-print("B")
-maze_solver(labs2)
-print("C")
-maze_solver(labs3)
-
-end = time.time()
-print(end - start)
+print(f"A\n{maze_solver(labs1)}\n\nB\n{maze_solver(labs2)}\n\nC\n{maze_solver(labs3)}")
