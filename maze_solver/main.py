@@ -28,7 +28,6 @@ def maze_solver(map:list):
     check_around_pos_num = [[0,-1],[-1,0],[0,1],[1,0]]
     check_around_directions = ["U","L","D","R"]
     check_around_elements = []  # fent, bal, lent, jobb
-    done = False
 
     for i,e in enumerate(map):
         if e.count("S") > 0:
@@ -76,8 +75,6 @@ def maze_solver(map:list):
 
             check_around_elements.clear()
 
-        if done:
-            break
         answ = new_answ.copy()
         positions = new_positions.copy()
         new_positions.clear()
