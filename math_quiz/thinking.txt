@@ -1,0 +1,8 @@
+1. feladat
+20 másodperc alatt a vonat megteszi az alagút hosszát és a vonat hosszát.
+5 másodperc alatt a vonat meg megteszi a vonat hosszát, tehát 15 másodperc alatt teszi meg az alagút hosszát a vonat, azaz 300 métert.
+ebből ki lehet számolni a sebességet, ami 20 m/s
+és mivel 5 másodperc alatt teszi meg a vonat hosszát és 20 m/s-os sebességgel meg, 100 méteres a vonat
+
+8. feladat
+1 átló ugyanannyi négyzetet érint, amennyit egy nagy négyzett oldala
