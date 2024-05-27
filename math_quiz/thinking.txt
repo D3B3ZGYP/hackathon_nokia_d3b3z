@@ -2,7 +2,17 @@
 20 másodperc alatt a vonat megteszi az alagút hosszát és a vonat hosszát.
 5 másodperc alatt a vonat meg megteszi a vonat hosszát, tehát 15 másodperc alatt teszi meg az alagút hosszát a vonat, azaz 300 métert.
 ebből ki lehet számolni a sebességet, ami 20 m/s
-és mivel 5 másodperc alatt teszi meg a vonat hosszát és 20 m/s-os sebességgel meg, 100 méteres a vonat
+és mivel 5 másodperc alatt teszi meg a vonat hosszát és 20 m/s-os sebességgel megy, 100 méteres a vonat
+
+3. feladat
+
+4. feladat
+programban megrajzoltam a 5 egységnyi sugarú kört, és 12 rácspontottal érintkezett
 
 8. feladat
-1 átló ugyanannyi négyzetet érint, amennyit egy nagy négyzett oldala
+1 átló ugyanannyi négyzetet érint, amennyit a nagy négyzett egyik oldala
+ezután ezt a hosszt négyzeteled, és ki jön a területe
+
+9. feladat
+ha összeadjuk a köszönések számát, ami 506, és aztán ezt a számot beteszükk egy egyenletbe ami n(n-1)=506, ebből jön, hogy 23 ember van jelen.
+mivel 1 emberhez 22 köszönés jár, ezért ha elosztjuk az angol köszönések számát, 198-at 22-vel, kijön, hogy 9 darab angol volt.
